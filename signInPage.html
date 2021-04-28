@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="rayBank.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="signInPageBody">
+    <center>
+        <h1 class="welcomeSignIn" class="text-dark">Welcome to Raymond Bank</h1>
+        <div id="signInD" class="signInDiv">
+           
+            <tr>
+                <td colspan="2" align="center"> <p  class="my-3">Sign In</p> </td>
+            </tr>
+            <tr>
+                <td>E-mail Address</td>
+                <td><input id="mailId" class="my-1" type="email" placeholder="something@smtnmail.com"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input id="passId" class="my-1" type="password"></td>
+                <!-- add a peekthrough logo for password which changes type to text -->
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><button class="my-3 btn btn-info" onclick="signIn()">Sign In</button></td>
+            </tr>
+            <br>
+            <tr>
+                <td colspan="2"> Don't have an account? <a href="http://127.0.0.1:5500/rayBank/index.html">Sign Up</a></td>
+            </tr>
+        </div> 
+    <script>
+        let allClientData;
+        allClientData = localStorage.myCustomers?JSON.parse(localStorage.myCustomers):[]
+        function signIn(){
+            for(i=0; i<allClientData.length;i++){
+                    if (allClientData[i].emailAddress==mailId.value && allClientData[i].password==passId.value){
+                        localStorage.userIndex = i
+                        alert(`Welcome,  ${allClientData[i].firstName}`)
+                        window.location.href = 'http://127.0.0.1:5500/rayBank/mainPage.html'
+                    }
+                    else{
+                        alert("incorrect details")
+                    }
+                    
+                }
+        }
+        
+    </script>
+
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

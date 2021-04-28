@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ray Bank</title>
+        <link rel="stylesheet" href="rayBank.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body id="indexBody">
+    
+        <center>
+            <h1 class="headBoyText" >Welcome to Ray Bank</h1>
+
+            <div id="signUpD" class="signUpDiv">
+                <table>	
+                <tr>
+                    <td colspan="2" align="center" class="py-4 ">Sign up</td>
+                </tr>
+                <tr>
+                    <td class="my-2">First Name</td>
+                    <td ><input class="form-control my-1" type="text" placeholder="" id="fname" required></td>
+                </tr>
+                <tr>
+                    <td class="my-2">Last Name</td>
+                    <td ><input class="form-control my-1" type="text" placeholder="" id="lname" required></td>
+                </tr>
+                <tr>
+                    <td class=" my-2">E-mail</td>
+                    <td ><input class="form-control my-1" type="email" placeholder="" id="mailAddress" required></td>
+                </tr>
+                <tr>
+                    <td>Phone Number</td>
+                    <td><input class="form-control my-1"  type="number" name="" id="phoneNumber" placeholder="" required></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><input class="form-control my-1" type="text" name="" id="address" placeholder="" required></td>
+                </tr>
+                </tr>
+                    <td>Password</td>
+                    <td><input class="form-control my-1"  type="" name="" id="password" required></td>
+                </tr>
+                </tr><tr>
+                    <td>Password Again</td>
+                    <td><input class="form-control my-1" type="" name="" id="confirmPassword" required></td>
+                </tr>
+                </tr>
+                    <td colspan="2" align="center"> <button class="btn btn-info my-3" onclick="signUp()">Sign up</button> </td>
+                </tr>
+                </tr>
+                <td colspan="2" align="center"> Already signed up, <a href="http://127.0.0.1:5500/rayBank/signInPage.html">Sign in</a> </td>
+                </tr>
+            <div id="errorDiv" class="my-2 text-warning"></div>
+        </table>
+        </div>
+
+
+    
+            
+        </center>
+
+
+
+        <script>
+            let allClientData;
+            allClientData = localStorage.myCustomers?JSON.parse(localStorage.myCustomers):[]
+            function signUp()
+            {   
+                var oneClientData = {}
+                oneClientData.emailAddress = mailAddress.value;
+                oneClientData.phoneNumber = phoneNumber.value;
+                oneClientData.address = address.value;
+                oneClientData.password = password.value;
+                oneClientData.accountNumber ="911"+ Math.floor(Math.random()*10000000);
+                oneClientData.currentBal = 50000;
+                oneClientData.firstName = fname.value;
+                oneClientData.lastName=lname.value;
+                if(oneClientData.emailAddress =="" ||oneClientData.phoneNumber =="" || oneClientData.address =="" || oneClientData.password =="" || oneClientData.bvn==""){
+                    alert("Kindly Fill in all details")
+                }
+               
+                if(password.value==confirmPassword.value && password.value!=="" && confirmPassword.value !==""){
+
+                    allClientData.push(oneClientData)
+                    localStorage.setItem("myCustomers",JSON.stringify(allClientData))
+                    alert("You have registered successfully, Kindly Log in")
+                    window.location.href = 'http://127.0.0.1:5500/rayBank/signInPage.html'
+                }
+                else{
+                    errorDiv.innerHTML = "Passwords do not match!"
+                }
+                
+            }
+
+            function signedIn(){
+                window.location.href = 'http://127.0.0.1:5500/rayBank/signInPage.html'
+            }
+              
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    </body>
+</html>
