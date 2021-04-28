@@ -11,7 +11,7 @@
 <body>
   <div id="mainPage" class="mainPageBody">
    
-    <nav class="navbar navbar-expand-lg navbar-light bg-danger ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-info ">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -40,43 +40,33 @@
             </ul>
           </div>
         </nav>
-
-          <div id="welcomeBack">Welcome back, </div> 
-          <div id="disp" class="jumboDiv" class="jumbotron jumbotron-fluid bg-info text-center display-4 my-2 w-75 h-25 mx-auto rounded-1 border rounded" >
-            
-            <div id="accountNumb">Your Account Number is </div>
-            <div id="dispAcctBal">Your account Balance is </div>
+        <center>
+        <div class="container">
+          <div class="col-md-7">
+            <div class="accountDetailsDiv">
+              <p class="display-4" id="welcomeBack">Welcome back, </p> 
+              <div class="text-white" id="accountNumb">Your Account Number is </div>
+              <div id="dispAcctBal">Your account Balance is </div>
+              <button class="btn btn-danger mx-4 my-2" onclick="transferInit()">Transfer</button>
+              <button class="btn btn-danger mx-4 my-2">Fund Account</button>
+            </div>
           </div>
+         </div>
+        </center>
 
-          <!-- <div class="row mx-auto">
-            <div class="jumbotron bg-danger w-25 mx-5"><button class="butn">Transfer</button></div>
-            <div class="jumbotron bg-danger w-25 mx-5"><button class="butn">Airtime Purchase</button></div>
-            <div class="jumbotron bg-danger w-25 mx-5"><button class="butn">Pay Bills</button></div>
-          </div>
-
-        </div> -->
-      
-        <div class="buttonDiv">
-          <button class="butnSized" onclick="transferInit()"> <img class="imageSized" src="transfer.png" alt="">Transfer </button>
-          <button class="butnSized"></button>
-        </div>
-        <!-- <div class="row">
-          <button class="btn btn-info my-5 mx-3" class="buttonClass"><img class="w-100" src="transfer.png" alt=""></button>
-          <button class="btn btn-info my-5 mx-" class="buttonClass"><img class="w-100" src="transfer.png" alt=""></button>
-          
-        </div> -->
-
-    
-         <div class="jumbotron bg-info w-25 jumbotron-center">
+         <br>
+         <div id="tabTransfer">
           
         
-              <input id="transferAcctNo" type="number" placeholder="Enter account number" class="inputDet"></td>
+              <input id="transferAcctNo" type="number" placeholder="Enter account number">
              
              
-               <input id="transferAmount" type="number" placeholder="enter amount in naira" class="inputDet">
+               <input id="transferAmount" type="number" placeholder="enter amount in naira" >
              
             
                <button  class="btn btn-danger" onclick="checkAcct()">Transfer</button>
+
+               <div id="errorDisp" ></div>
 
           <div id="confirmAcct"></div>
           <div id="confirmDetails" class="confirmDetailsDiv">
@@ -97,6 +87,7 @@
             allClientData = localStorage.myCustomers?JSON.parse(localStorage.myCustomers):[]
             userIndex = JSON.parse(localStorage.userIndex)
             userProfile = allClientData[userIndex]
+            // secondAccountIndex = 0
 
             dispBal()
             function dispBal(){
@@ -112,22 +103,48 @@
 
             function checkAcct(){
               for(i=0; i<allClientData.length;i++){
+               
                 if(allClientData[i].accountNumber == transferAcctNo.value){
                   confirmAcct.innerHTML = `${allClientData[i].firstName} ${allClientData[i].lastName}`
+                  // secondAccountIndex = i
                   confirmDetails.style.display="block"
+                  break;
+                  
                 }
+                
               }
+              if (transferAmount.value == "" || transferAcctNo.value ==""){
+                    alert(`Kindly Fill all details`)
+                }
+              else if(i==allClientData.length){
+                alert(`Account not found`)
+              }
+
             }
-            function transferFunds(){
-              for(i=0; i<allClientData.length;i++){
-                if(allClientData[i].accountNumber == transferAcctNo.value){
-                  allClientData[i].currentBal = allClientData[i].currentBal-transferAmount.value
+            function transferFunds()
+            {
+              for(i=0; i<allClientData.length;i++)
+              {
+              
+                if(allClientData[i].accountNumber == transferAcctNo.value && allClientData[userIndex].currentBal > transferAmount.value)
+                {
+                  allClientData[i].currentBal = parseInt(allClientData[i].currentBal)  + parseInt(transferAmount.value);
+                  allClientData[userIndex].currentBal =  allClientData[userIndex].currentBal - transferAmount.value;
                   console.log(allClientData)
                   localStorage.setItem("myCustomers",JSON.stringify(allClientData))
+                  confirmDetails.style.display="none"
+                  confirmAcct.innerHTML = ``
                   alert("Transfer is successful")
-
+                  location.reload()
+                  break;
+                  
                 }
-              }
+              } 
+                if (allClientData[userIndex].currentBal < transferAmount.value)
+                {
+                  alert(`Insufficient funds, kindly top up your account`)
+                }
+
             }
 
 

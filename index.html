@@ -5,59 +5,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Ray Bank</title>
         <link rel="stylesheet" href="rayBank.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     </head>
     <body id="indexBody">
-    
+
         <center>
-            <h1 class="headBoyText" >Welcome to Ray Bank</h1>
-
-            <div id="signUpD" class="signUpDiv">
-                <table>	
-                <tr>
-                    <td colspan="2" align="center" class="py-4 ">Sign up</td>
-                </tr>
-                <tr>
-                    <td class="my-2">First Name</td>
-                    <td ><input class="form-control my-1" type="text" placeholder="" id="fname" required></td>
-                </tr>
-                <tr>
-                    <td class="my-2">Last Name</td>
-                    <td ><input class="form-control my-1" type="text" placeholder="" id="lname" required></td>
-                </tr>
-                <tr>
-                    <td class=" my-2">E-mail</td>
-                    <td ><input class="form-control my-1" type="email" placeholder="" id="mailAddress" required></td>
-                </tr>
-                <tr>
-                    <td>Phone Number</td>
-                    <td><input class="form-control my-1"  type="number" name="" id="phoneNumber" placeholder="" required></td>
-                </tr>
-                <tr>
-                    <td>Address</td>
-                    <td><input class="form-control my-1" type="text" name="" id="address" placeholder="" required></td>
-                </tr>
-                </tr>
-                    <td>Password</td>
-                    <td><input class="form-control my-1"  type="" name="" id="password" required></td>
-                </tr>
-                </tr><tr>
-                    <td>Password Again</td>
-                    <td><input class="form-control my-1" type="" name="" id="confirmPassword" required></td>
-                </tr>
-                </tr>
-                    <td colspan="2" align="center"> <button class="btn btn-info my-3" onclick="signUp()">Sign up</button> </td>
-                </tr>
-                </tr>
-                <td colspan="2" align="center"> Already signed up, <a href="http://127.0.0.1:5500/rayBank/signInPage.html">Sign in</a> </td>
-                </tr>
-            <div id="errorDiv" class="my-2 text-warning"></div>
-        </table>
-        </div>
-
-
-    
+            <h1 class="text-white py-1 rounded-" >Welcome to Ray Bank</h1>
             
+                    <div class="container">
+                        <div class="col-md-7">
+                            <div class="signUpDiv">
+                                <div class="display-6 my-4">Sign up</div>
+                                <input class="form-control my-2 text-center" type="text" placeholder="First Name" id="fname" required>
+                                <input class="form-control  my-2 text-center" type="text" placeholder="Last name" id="lname" required>
+                                <input class="form-control  my-2 text-center" type="email" placeholder="Email" id="mailAddress" required>
+                                <input class="form-control  my-2 text-center"  type="number" name="" id="phoneNumber" placeholder="Phone Number" required>
+                                <input class="form-control  my-2 text-center" type="text" name="" id="address" placeholder="Address" required>
+                                <input class="form-control  my-2 text-center"  type="" name="" id="password" placeholder="Password" required>
+                                <input class="form-control  my-2 text-center" type="" name="" id="confirmPassword" required placeholder="Password Again">
+                                <button class="btn btn-info btn-block  my-2" onclick="signUp()">Sign up</button>
+                                <p>Already signed up, <a href="http://127.0.0.1:5500/rayBank/signInPage.html">Sign in</a></p>   
+                            </div>
+
+                            
+                        </div> 
+                        
+    
+                    </div>
+                    
+                
+                    
+            <div id="errorDiv" class="my-2 text-warning"></div>
+    
         </center>
 
 
@@ -98,7 +77,9 @@
             }
               
         </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
     </body>
 </html>
